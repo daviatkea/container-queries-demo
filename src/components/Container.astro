@@ -1,0 +1,25 @@
+---
+const { containers, increment, startAt } = Astro.props;
+---
+
+<div>
+  {
+    [...Array(containers)].map((_, i) => {
+      const width = i * increment + startAt + "px";
+      return (
+        <div style={`width: ${width}`}>
+          <div class="size">{width}</div>
+          <slot />
+        </div>
+      );
+    })
+  }
+</div>
+
+<style>
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>

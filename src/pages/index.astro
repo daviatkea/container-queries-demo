@@ -1,0 +1,63 @@
+---
+import "../styles/base.css";
+
+import CQ from "../components/CQ.astro";
+import Card from "../components/Card.astro";
+import Container from "../components/Container.astro";
+
+const props = {
+  containers: 4,
+  increment: 175,
+  startAt: 340,
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <div class="CQ">
+      {
+        [...Array(props.containers)].map((_, i) => {
+          const width = i * props.increment + props.startAt + "px";
+          return (
+            <div style={`width: ${width}`}>
+              <div class="size">{width}</div>
+              <Card />
+            </div>
+          );
+        })
+      }
+    </div>
+  </body>
+</html>
+
+<style>
+  .CQ {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 1rem;
+    gap: 2rlh;
+    padding: 2rlh;
+
+    > * {
+      display: grid;
+      align-items: start;
+      align-content: start;
+      gap: 0.5rlh;
+      outline: 1px dashed #ccc;
+      padding: 4px;
+    }
+  }
+
+  .size {
+    font-size: 0.75rem;
+    color: #666;
+    margin-inline: auto;
+  }
+</style>

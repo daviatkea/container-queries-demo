@@ -1,0 +1,31 @@
+---
+const { containers, increment, startAt } = Astro.props;
+---
+
+<div class="CQ">
+  {
+    [...Array(containers)].map((_, i) => {
+      const width = i * increment + startAt + "px";
+      return (
+        <div style={`width: ${width}`}>
+          <div class="size">{width}</div>
+          <slot />
+        </div>
+      );
+    })
+  }
+</div>
+
+<style>
+  .CQ {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 1rem;
+    gap: 1rlh;
+  }
+
+  .size {
+    font-size: 0.75rem;
+    color: #666;
+  }
+</style>
